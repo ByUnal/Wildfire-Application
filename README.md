@@ -9,11 +9,6 @@ The API provides User Interface for the SQL aggregations and XGBoost model to pr
 according to given inputs. [1.88 Million US Wildfires](https://www.kaggle.com/datasets/rtatman/188-million-us-wildfires/code) is used for the training.
 This dataset includes several tables, but I used only "Fires" table for both training the model and SQL aggregations.
 
-## Clone the repository
-I used Git LFS while uploading the large size file. So, you can use it ```git clone``` to clone the repo.
-However, you can also use ```git lfs clone ``` instead to better performance.
-
-
 ## Model Training Details
 
 | identifier                                                     | learning rate | tree method | database                                                                                                          | 
