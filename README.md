@@ -16,7 +16,7 @@ This dataset includes several tables, but I used only "Fires" table for both tra
 | [XGBoostClassifier](https://xgboost.readthedocs.io/en/stable/) |      0.5      |    hist     | [1.88 Million US Wildfires](https://www.kaggle.com/datasets/rtatman/188-million-us-wildfires/code) (Preprocessed) |
 
 ## Data Installation and Preparation
-Firstly, create ```data``` and ```logs``` folder in the folder. Then, you need to download the [dataset](https://www.kaggle.com/datasets/rtatman/188-million-us-wildfires/code). Next, put it under the "data" folder.
+Firstly, create ```data``` and ```logs``` folder in the directory. Then, you need to download the [dataset](https://www.kaggle.com/datasets/rtatman/188-million-us-wildfires/code). Next, put it under the "data" folder.
 You can see the steps I followed while preparing the data for the training below. Open the terminal in the project's directory first.
 Then go inside "operation" folder.
 - As I mentioned above, 1.88 Million US Wildfires in SQL format and includes lots of tables. We're going to extract Fires table only.
@@ -34,6 +34,7 @@ Before training the model, we should extract useful information from the dataset
   - Drop duplicates
   - "DISCOVERY_SIZE" is in Julian Date format. So, convert it to date type(the type we used in every day). Then save in "DATE" column.
   - Divide "DATE" column as "MONTH" and "DAY_OF_WEEK" to increase feature number.
+
 To do aforementioned steps:
 ```
 python data_preprocessing.py
