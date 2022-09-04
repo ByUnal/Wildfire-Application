@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildifires</title>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <main class="container">
+        <header>
+            <div class="d-flex justify-content-center">
+                <h3 class="mt-2 mb-1">WILDFIRES</h3>
+            </div>
+        </header>
+        <hr>
+
+        <section class="mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            Have wildfires become more or less frequent over time?
+                        </div>
+                        <div class="card-body">
+                            <img src="../static/images/over_years.jpg" class="card-img-top" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            What counties are the most and least fire-prone?
+                        </div>
+                        <div class="card-body">
+                            <img src="../static/images/state_per_wildfire.jpg" class="card-img-top" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            Database
+                        </div>
+                        <div class="card-body">
+                            <form action="/fetchDatabase">
+                                <div class="mb-3">
+                                    <label class="form-label">SQL Query</label>
+                                    <textarea class="form-control" rows="3" name="sqlquery" placeholder="Write SQL Query (Fires table is available only)" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            Predict cause of Wildfire
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <form action="/" method="GET">
+                                        <div class="mb-3 row">
+                                            <label class="col-sm-4 col-form-label">Date</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" name="date" placeholder="Ex: DD.MM.YYYY" size="10" required>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label class="col-sm-4 col-form-label">Fire Size</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" name="fsize" placeholder="Ex: 0.10" size = 10 required>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label class="col-sm-4 col-form-label">Latitude</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" name="lat" size = 10 required>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label class="col-sm-4 col-form-label">Longitude</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" name="lon" size = 10 required>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label class="col-sm-4 col-form-label">State</label>
+                                            <div class="col-sm-7">
+                                                <select name="states" class="form-select" required>
+                                                    {% for s in state_list %}
+                                                    <option value="{{ s }}">{{ s }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </form>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="text-center">
+                                        Wildfire Cause
+                                    </div>
+                                    <div class="p-1 border border-gray form-control">
+                                        {{predicton}}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+
+</html>

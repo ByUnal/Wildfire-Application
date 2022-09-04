@@ -1,0 +1,11 @@
+Flask==2.2.2
+flask-paginate==2022.1.8
+xgboost==1.6.1
+python-dateutil==2.8.2
+numpy==1.23.1
+joblib==1.1.0
+pandas==1.4.4
+scikit-learn==1.1.2
+matplotlib==3.5.3
+astropy==5.1
+imbalanced-learn==0.6.0
