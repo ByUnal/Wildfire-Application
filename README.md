@@ -1,6 +1,4 @@
-<p align="center"> <img src="https://storage.googleapis.com/kaggle-datasets-images/2478/4139/f9e230838cd264868626ffea7c9d1647/dataset-cover.jpg" alt="Wildfire LOGO"> </p>
-<h2 align="center">Wildfires</h2>
-
+![Wildfire-cover](https://user-images.githubusercontent.com/43930582/188334716-0cd6666a-0fbc-47cb-83bb-59fd15262b6c.jpg)<h2 align="center">Wildfires</h2>
 <p align="center">
   Developed by <a href="https://github.com/ByUnal"> M.Cihat Unal </a> 
 </p>
