@@ -12,7 +12,7 @@ from xgboost import XGBClassifier
 app = Flask(__name__)
 
 # Set the configs for logging(errors only)
-logging.basicConfig(filename='logs/error.log', level=logging.DEBUG,
+logging.basicConfig(filename='logs/error.log', level=logging.ERROR,
                     format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 
 STATE_LIST = ['CA', 'NM', 'OR', 'NC', 'WY', 'CO', 'WA', 'MT', 'UT', 'AZ', 'SD',
@@ -103,24 +103,29 @@ def home():
     :return: Loads variable into main(index.html) html file
     """
     if request.args:
-        date = request.args.get('date', '')
-        dt = dateutil.parser.parse(date)
-        fire_year = dt.year
+        try:
+            date = request.args.get('date', '')
+            dt = dateutil.parser.parse(date)
+            fire_year = dt.year
+            month = dt.month
+            day = dt.day
 
-        discovery_year = float(time.Time(dt).jd)
-        fire_size = float(request.args.get('fsize', ''))
-        latitude = float(request.args.get('lat', ''))
-        longitude = float(request.args.get('lon', ''))
+            discovery_year = float(time.Time(dt).jd)
+            fire_size = float(request.args.get('fsize', ''))
+            latitude = float(request.args.get('lat', ''))
+            longitude = float(request.args.get('lon', ''))
 
-        state = request.args.get('states', '')
-        # convert to numeric form
-        state_enc = le.fit_transform([state])[0]
+            state = request.args.get('states', '')
+            # convert to numeric form
+            state_enc = le.fit_transform([state])[0]
 
-        features = np.array([[fire_year, discovery_year, fire_size, latitude, longitude, state_enc]])
-        prediction = model.predict(features)
+            features = np.array([[fire_year, discovery_year, fire_size, latitude, longitude, state_enc, month, day]])
+            prediction = model.predict(features)
 
-        return render_template("index.html", predicton=le_name_mapping[prediction[0]],
-                               fsize=fire_size, state_list=STATE_LIST)
+            return render_template("index.html", predicton=le_name_mapping[prediction[0]],
+                                   fsize=fire_size, state_list=STATE_LIST)
+        except Exception as e:
+            app.logger.error("Error while entering features: %s", e)
     else:
         return render_template('index.html', state_list=STATE_LIST)
 
@@ -133,9 +138,9 @@ if __name__ == "__main__":
 
         # Load models for prediction
         model = XGBClassifier()
-        model.load_model("models/model_xgb.pkl")
+        model.load_model("models/model.pkl")
     except FileNotFoundError as file_error:
         app.logger.critical("Files under the 'models' cannot be found Error: %s", file_error)
 
     # Launch the Flask dev server
-    app.run(host="0.0.0.0", debug=False)
+    app.run(host="0.0.0.0")

@@ -26,7 +26,7 @@ def parse_args():
     )
     parser.add_argument(
         "--model_name",
-        default="models",
+        default="model.pkl",
         help="Name of the saved models. Please enter with its extension(ex.: .pt, .pkl)",
     )
     parser.add_argument(
@@ -92,19 +92,19 @@ def main():
     y = df['STAT_CAUSE_DESCR']
 
     # Data is imbalanced. Handle by resampling via SMOTE
-    smote = SMOTE(random_state=26)
-    X_res, y_res = smote.fit_sample(X, y)
+    # smote = SMOTE(random_state=26)
+    # X_res, y_res = smote.fit_sample(X, y)
 
     scaler = MinMaxScaler()
     # transform data
-    X_res = scaler.fit_transform(X_res)
+    X = scaler.fit_transform(X)
 
-    print("Shape of features: ", X_res.shape)
-    print("Shape of labels: ", y_res.shape)
+    print("Shape of features: ", X.shape)
+    print("Shape of labels: ", y.shape)
 
     # 20% for testing, 80% for training
-    X_train, X_test, y_train, y_test = train_test_split(X_res, y_res, train_size=float(args.train_size),
-                                                        random_state=0, stratify=y_res)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=float(args.train_size),
+                                                        random_state=0, stratify=y)
 
     # fit models
     print("\nTraining the models...")
@@ -122,7 +122,7 @@ def main():
     print("Classification Report: \n", classification_report(y_test, y_pred))
 
     # # Use Cross Validation to measure the success of the models
-    cv = cross_validate(models, X_train, y_train, cv=int(args.cv))
+    cv = cross_validate(model, X_train, y_train, cv=int(args.cv))
     print("Test score after Cross Validation: ", cv["test_score"].mean())
 
     # Save models in pkl format

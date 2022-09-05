@@ -1,0 +1,35 @@
+body::before {
+      content: "";
+      background-image: url('../images/wildfire-back.jpeg');
+      background-size: cover;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.85;
+}
+
+header {
+background-color: #211f57;
+color: #fff;
+opacity: 0.9;
+}
+
+.form-control:disabled, .form-control[readonly] {
+  background-color: #fff;
+  opacity: 1;
+}
+
+.form-control[readonly]::placeholder,  { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: red;
+  opacity: 1; /* Firefox */
+}
+
+.card-header {
+  background-color: rgba(196, 30, 30, 0.43);
+}
+
+.card-body {
+  background-color: bisque;
+}

@@ -62,6 +62,8 @@ def get_features(le):
     date = args.date
     dt = dateutil.parser.parse(date)
     fire_year = dt.year
+    month = dt.month
+    day = dt.day
 
     discovery_year = float(time.Time(dt).jd)
     fire_size = float(args.fire_size)
@@ -72,7 +74,7 @@ def get_features(le):
     # convert to numeric form
     state_enc = le.fit_transform([state])[0]
 
-    return np.array([[fire_year, discovery_year, fire_size, latitude, longitude, state_enc]])
+    return np.array([[fire_year, discovery_year, fire_size, latitude, longitude, state_enc, month, day]])
 
 
 ##############################################################
@@ -87,7 +89,7 @@ def main():
 
     # Load models to see if it works properly
     model = XGBClassifier()
-    model.load_model("../models/model_xgb.pkl")
+    model.load_model("../models/model.pkl")
 
     features = get_features(le)
     prediction = model.predict(features)
