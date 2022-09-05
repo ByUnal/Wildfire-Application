@@ -75,7 +75,26 @@ python main.py
 ## User Interface
 You will encounter with this page when you run the API successfully.
 
-![image](https://user-images.githubusercontent.com/43930582/188329472-2514e603-1417-4512-8a7d-b72b2089f8d9.png)
+![image](https://user-images.githubusercontent.com/43930582/188519739-2232302e-9f89-474b-8245-17e65656762a.png)
+
+### Example Usage
+#### Wildfire Cause Prediction
+After entering the inputs, click the submit button and see the prediction of Wildfire Cause
+![image](https://user-images.githubusercontent.com/43930582/188519829-20f9b657-9023-4775-9865-c2995806f169.png)
+
+#### SQL Aggregation
+You can make SQL query by using only "Fires" table, and you can see the columns by:
+```Select * From Fires```.
+
+Enter the SQL Query in the textbox.
+![image](https://user-images.githubusercontent.com/43930582/188519912-c48b0b60-a72a-4166-83a7-bfc4c4f30d4c.png)
+
+Then click the search button. Then you will encounter with this kind of page:
+![image](https://user-images.githubusercontent.com/43930582/188520076-e2397b2d-e93c-42c4-aded-607abae5a6e5.png)
+
+You can examine the results through the pages.
+
+In the end, you return the home page by clicking "Go Back" button.
 
 ## Train Model
 Training can be done by using different parameters by using environment variable.
