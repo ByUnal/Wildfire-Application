@@ -49,11 +49,11 @@ Datasets can be found in **data** folder.
 ### via Docker
 Build the image inside the Dockerfile's directory
 ```commandline
-docker build -t canonical .
+docker build -t wildfire .
 ```
 Then for running the image in local network
 ```commandline
-docker run --network host --name canonical-cont canonical
+docker run --network host --name wildfire-cont wildfire
 ```
 Finally, you can reach the API from your browser by entering:
 ```bash
@@ -99,7 +99,7 @@ In the end, you return the home page by clicking "Go Back" button.
 ## Train Model
 Training can be done by using different parameters by using environment variable.
 ```commandline
-python train.py --learnin_rate 0.3 --train_size 0.7 --tree_method hist --model_name canonical.pkl
+python train.py --learnin_rate 0.3 --train_size 0.7 --tree_method hist --model_name wildfire.pkl
 ```
 
 ## Inference
